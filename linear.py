@@ -1,3 +1,5 @@
+import numpy as np
+
 def linear(z,p):
     #Organization of the elements of z in a matrix
     matrix_Z= np.array([z[:4],z[4:] ] ) 
