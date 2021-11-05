@@ -19,16 +19,12 @@ def encryption():
     w = u
     n = 5 #number of round
 
-    for i in range(0,n-2):
+    for i in range(0,n):
         v = addition.addition(k_i[i],w,p)
         y = substitution.linear_substitution(v, p)
         z = transposition.transposition(y)
-        w = linear.linear(z, p)
-
-    v = addition.addition(k_i[n-1],w,p)
-    y = substitution.linear_substitution(v, p)
-    z = transposition.transposition(y)
-    x = addition.addition(k_i[n],w,p)
+        if(i<n-1): w = linear.linear(z, p)
+    x = addition.addition(k_i[n],z,p)
 
     print()
     print("x: ", x)
