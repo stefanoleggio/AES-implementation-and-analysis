@@ -14,8 +14,6 @@ addition()
         @type list of integers
         @dimension (1x8)
 """
-import numpy as np
-
 def addition (sub_key, w, p):
     v = list((w + np.array(sub_key+sub_key))%p)
     return v
