@@ -16,6 +16,3 @@ def subkey_generation (K):
     K_4 = [K[0],K[2],K[5],K[7]]
     K_5 = [K[2],K[3],K[4],K[5]]
     return K_0,K_1,K_2,K_3,K_4,K_5
-
-K=[1,0,0,0,0,0,0,0]
-print(subkey_generation(K))
