@@ -66,4 +66,10 @@ def linear_substitution(v, p):
         y.append(f(v_i))
     return y
 
+def nearlylinear_substitution(v, p):
+    f = [0,2,4,8,6,10,1,3,5,7,9]
+    y = []
+    for v_i in v:
+        y.append(f[v_i])
+    return y
 
