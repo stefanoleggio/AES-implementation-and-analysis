@@ -100,7 +100,7 @@ def linear_substitution(v, p):
     return y
 
 def linear_substitution_inverse(y, p):
-    f = lambda x: 6*x
+    f = lambda x: (6 * x) % p
     v = []
     for y_i in y:
         v.append(f(y_i))
