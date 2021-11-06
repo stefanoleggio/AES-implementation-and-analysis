@@ -36,7 +36,7 @@ addition()
         @type list of integers
         @dimension (1x8)
 """
-def addition (sub_key, w, p):
+def subkey_sum (sub_key, w, p):
     v = list((w + np.array(sub_key+sub_key))%p)
     return v
 
@@ -58,6 +58,19 @@ def linear(z,p):
     #Reorganization in a list
     w=list(matrix_W[0,:4] ) + list (matrix_W[1,:4])
     return (w)
+    
+def linear_inverse(w,p):
+    #Organization of the elements of w in a matrix
+    matrix_W= np.array([w[:4],w[4:] ] ) 
+    #Matrix called 'A_inverse' that is the inverse of matrix A 
+    matrix_A_inverse= np.array([[2,8],[6,10]])
+    #matrix multiplication
+    matrix_Z=np.dot(matrix_A_inverse,matrix_W)
+    # Mod p 
+    matrix_Z= matrix_Z%p
+    #Reorganization in a list
+    z=list(matrix_Z[0,:4] ) + list (matrix_Z[1,:4])
+    return (z)
 
 def linear_substitution(v, p):
     f = lambda x: (2 * x) % p
@@ -66,10 +79,16 @@ def linear_substitution(v, p):
         y.append(f(v_i))
     return y
 
-def nearlylinear_substitution(v, p):
+def nearlyLinear_substitution(v, p):
     f = [0,2,4,8,6,10,1,3,5,7,9]
     y = []
     for v_i in v:
         y.append(f[v_i])
     return y
 
+def nonLinear_subsitution(v, p):
+    f = lambda x: (2 * x) % p
+    y = []
+    for v_i in v:
+        y.append(f(v_i))
+    return y
