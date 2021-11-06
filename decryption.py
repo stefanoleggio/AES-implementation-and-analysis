@@ -14,14 +14,14 @@ def decryption(x, K, mode):
     n = 5
     v = x
     
-    for i in range(n,0,-1):
-        if(i<n):
-            v = cipher.linear_inverse(z,p)
-        z = cipher.subkey_sub(k_i[i],v,p)
+    z = cipher.subkey_sub(k_i[n],v,p)
+    for i in range(n-1,-1,-1):
+        if(i<n-1):
+            z = cipher.linear_inverse(w,p)
         y = cipher.transposition(z)
         v = cipher.linear_substitution_inverse(y,p)
-
-    u = cipher.subkey_sub(k_i[0],v,p)
+        w = cipher.subkey_sub(k_i[i],v,p)
+    u = w
 
     return u
 
