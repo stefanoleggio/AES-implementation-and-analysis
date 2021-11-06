@@ -21,7 +21,7 @@ def subkey_generation (K):
 
 
 """
-addition()
+subkey_sum()
 @description: sub_key sum function
 @params:'sub_key' previously computed subkey of the original key K
         @type list of integers
@@ -39,6 +39,26 @@ addition()
 def subkey_sum (sub_key, w, p):
     v = list((w + np.array(sub_key+sub_key))%p)
     return v
+
+"""
+subkey_sub()
+@description: sub_key sub function
+@params:'sub_key' previously computed subkey of the original key K
+        @type list of integers
+        @dimension (1x4)
+        'v' output of the previous time stap
+        @type list of integers
+        @dimension (1x8)
+        'p' prime number
+        @type integer
+        @dimension (1x1)
+@output:'w' result of the difference modulo p
+        @type list of integers
+        @dimension (1x8)
+"""
+def subkey_sub (sub_key, v, p):
+    w = list((v - np.array(sub_key+sub_key))%p)
+    return w
 
 def transposition(y):
     #transposition of the second half 
