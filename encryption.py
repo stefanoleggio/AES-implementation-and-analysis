@@ -22,7 +22,7 @@ def encryption(u, K, mode):
         if(mode == "l"):
             y = cipher.linear_substitution(v, p)
         elif(mode == "nl"):
-            y = cipher.nearlyLinear_substitution(v, p)
+            y = cipher.nearlyLinear_substitution(v)
         elif(mode == "n"):
             y = cipher.nonLinear_subsitution(v, p)
         else:

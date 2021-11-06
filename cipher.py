@@ -99,7 +99,14 @@ def linear_substitution(v, p):
         y.append(f(v_i))
     return y
 
-def nearlyLinear_substitution(v, p):
+def linear_substitution_inverse(y, p):
+    f = lambda x: 6*x
+    v = []
+    for y_i in y:
+        v.append(f(y_i))
+    return v
+
+def nearlyLinear_substitution(v):
     f = [0,2,4,8,6,10,1,3,5,7,9]
     y = []
     for v_i in v:
