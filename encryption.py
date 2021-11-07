@@ -1,4 +1,5 @@
 import cipher
+import numpy as np
 
 #   Encryption mode:
 #   -l linear
@@ -24,13 +25,14 @@ def encryption(u, K, mode):
         elif(mode == "nl"):
             y = cipher.nearlyLinear_substitution(v)
         elif(mode == "n"):
-            y = cipher.nonLinear_subsitution(v, p)
+            y = cipher.nonLinear_substitution(v, p)
         else:
             print("Invalid mode")
             return -1
         z = cipher.transposition(y)
         if(i<n-1): w = cipher.linear(z, p)
     x = cipher.subkey_sum(k_i[n],z,p)
+
 
     return x
 

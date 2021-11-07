@@ -1,4 +1,5 @@
 import numpy as np
+import utils
 
 """
 subkey_generation()
@@ -113,9 +114,13 @@ def nearlyLinear_substitution(v):
         y.append(f[v_i])
     return y
 
-def nonLinear_subsitution(v, p):
-    f = lambda x: (2 * x) % p
+def nonLinear_substitution(v, p):
+    f = lambda x: 2 * utils.modular_inverse(x, p)
     y = []
     for v_i in v:
-        y.append(f(v_i))
+        if(v_i!=0):
+            y.append(f(v_i))
+        else:
+            y.append(0)
     return y
+
