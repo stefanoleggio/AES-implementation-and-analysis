@@ -13,7 +13,7 @@ def encryption(u, K, mode):
     z=[] #output of transposition
     p = 11
 
-    k_i = cipher.subkey_generation(K)
+    k_i = cipher.subkey_generation(K, mode)
 
     w = u
     n = 5 #number of round
@@ -52,6 +52,9 @@ if __name__ == "__main__":
     print(" K:", K)
     print(" x:", encryption(u, K, "nl"))
     print()
+
+    K = [1,0,0,0]
+
     print("[*] Non linear encryption")
     print(" u:", u)
     print(" K:", K)
