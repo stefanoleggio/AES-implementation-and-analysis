@@ -119,8 +119,17 @@ def nearlyLinear_substitution(v):
     f = [0,2,4,8,6,10,1,3,5,7,9]
     y = []
     for v_i in v:
-        y.append(f[v_i])
+        y.append(f[int(v_i)])
     return y
+
+def nearlyLinear_substitution_inverse(y):
+    f = [0,2,4,8,6,10,1,3,5,7,9]
+    v = []
+    for y_i in y:
+        for i in range(len(f)):
+            if(f[i]==y_i):
+                v.append(i)
+    return v
 
 def nonLinear_substitution(v, p):
     f = lambda x: 2 * utils.modular_inverse(x, p)
@@ -131,4 +140,14 @@ def nonLinear_substitution(v, p):
         else:
             y.append(0)
     return y
+
+def nonLinear_substitution_inverse(y,p):
+    f = lambda x: 2 * utils.modular_inverse(x, p)
+    v = []
+    for y_i in y:
+        if(y_i == 0):
+            v.append(0)
+        else:
+            v.append(f(y_i))
+    return v
 
