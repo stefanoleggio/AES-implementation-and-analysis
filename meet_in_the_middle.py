@@ -1,3 +1,4 @@
+from numpy.core.fromnumeric import repeat
 import encryption as e
 import decryption as d
 import utils
@@ -11,14 +12,18 @@ if __name__ == "__main__":
     kx_pairs = [] # List for key and cipher text
     ku_pairs = [] # List for key and plain text
 
-    U, X = utils.read_file("KPAdataAerosmith/KPApairsAerosmith_non_linear.txt")
+    U, X = utils.read_file("KPAdataAerosmith/KPApairsAerosmith_non_linear_v2.txt")
 
     print("[*] Creating K set")
 
     start_time = time.time()
 
     # Creates all the possible combinatios of a four element list with values 0-10
-    K = list(itertools.permutations([0,1,2,3,4,5,6,7,8,9,10], 4))
+    #K = list(itertools.permutations([0,1,2,3,4,5,6,7,8,9,10], 4))
+
+ 
+    K = list(itertools.product([0,1,2,3,4,5,6,7,8,9,10], repeat = 4))
+
 
     print(" Total keys: ", len(K))
 
@@ -77,30 +82,28 @@ if __name__ == "__main__":
 
     print("[*] Searching matchings")
 
-    k1 = []
-    k2 = []
-    k_counter = 0
-
     # Find all possible matching where the plain text is equal to the cipher text
 
     for i in range(len(x_values)):
         index = np.searchsorted(u_values, x_values[i])
         if(x_values[i]==u_values[index]):
             print("[*] Match founded!")
-            tmp_k1 = kx_pairs[i][1]
-            tmp_k2 = ku_pairs[index][1]
-            print(" k1 =", tmp_k1)
-            print(" k2 =", tmp_k2)
+            k1 = kx_pairs[i][1]
+            k2 = ku_pairs[index][1]
+            print(" k1 =", k1)
+            print(" k2 =", k2)
             print("[*] Check if the keys are valid")
 
-            # Since all the ciphertext in the file are encrypted with the same key I try to encrypt the first value
+            # Check if the pairs of key founded is valid for each key in the file
             
-            x_1 = e.encryption(e.encryption(U[0],tmp_k1,"n"),tmp_k2,"n")
-            if((x_1 == X[0]).all()):
+            isValid = True
+            for u,x in zip(U,X):
+                x_i = e.encryption(e.encryption(u,k1,"n"),k2,"n")
+                if((x_i==x).all() == False):
+                    isValid = False
+                    print(" The keys are not valid")
+                    break
+            if(isValid):
                 print(" The keys are valid!")
                 break
-            else:
-                print(" The keys are not valid")
-            k1.append(tmp_k1)
-            k2.append(tmp_k2)
     print("----- Total execution time:", (time.time() - start_time), "seconds -----")
