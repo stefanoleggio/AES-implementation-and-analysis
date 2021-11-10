@@ -1,4 +1,3 @@
-from numpy.core.fromnumeric import repeat
 import encryption as e
 import decryption as d
 import utils
@@ -19,8 +18,6 @@ if __name__ == "__main__":
     start_time = time.time()
 
     # Creates all the possible combinatios of a four element list with values 0-10
-    #K = list(itertools.permutations([0,1,2,3,4,5,6,7,8,9,10], 4))
-
  
     K = list(itertools.product([0,1,2,3,4,5,6,7,8,9,10], repeat = 4))
 
@@ -87,6 +84,7 @@ if __name__ == "__main__":
     for i in range(len(x_values)):
         index = np.searchsorted(u_values, x_values[i])
         if(x_values[i]==u_values[index]):
+            print()
             print("[*] Match founded!")
             k1 = kx_pairs[i][1]
             k2 = ku_pairs[index][1]
@@ -106,4 +104,4 @@ if __name__ == "__main__":
             if(isValid):
                 print(" The keys are valid!")
                 break
-    print("----- Total execution time:", (time.time() - start_time), "seconds -----")
+    print("\n----- Total execution time:", (time.time() - start_time), "seconds -----\n")
