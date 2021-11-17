@@ -1,4 +1,5 @@
 import numpy as np
+import encryption as e
 
 def modular_inverse(a,m):
     for x in range(1,m):
@@ -26,3 +27,20 @@ def read_file(path):
         u.append(u_i)
         x.append(x_i)
     return u,x
+
+
+def get_matrices(mode):
+    A = np.zeros((8,8))
+    B = np.zeros((8,8))
+    K = np.zeros(8)
+    u = np.zeros(8)
+
+    for i in range(len(K)):
+        K[i] = 1
+        A[i] = e.encryption(u,K,mode)
+        K[i] = 0
+        u[i] = 1
+        B[i] = e.encryption(u,K,mode)
+        u[i] = 0
+
+    return A.transpose(), B.transpose()
